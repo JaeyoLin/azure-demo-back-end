@@ -1,0 +1,24 @@
+{
+  "name": "azure-demo-back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "azure": "^1.2.0-preview",
+    "azure-storage": "^2.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaeyoLin/azure-demo-back-end.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JaeyoLin/azure-demo-back-end/issues"
+  },
+  "homepage": "https://github.com/JaeyoLin/azure-demo-back-end#readme"
+}
