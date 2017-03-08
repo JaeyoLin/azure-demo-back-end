@@ -7,7 +7,7 @@
 
         var connectString = 'DefaultEndpointsProtocol=https;AccountName=function41bedd119c61;AccountKey=PuHsT4RStNtm4FPSVnyA+5Rl9mtRYDnu4tdacUXqcLfCy6cqmNtlQDvXd1s4Sn9ZtbwpOV4bnEiKta2NHsiBJg==;';
         var azure = require('azure-storage');
-        var queueName = 'aaronqueue';
+        var queueName = 'aaronqueue1';
         var queueService = azure.createQueueService(connectString);
 
         queueService.createQueueIfNotExists(queueName, function (error) {
