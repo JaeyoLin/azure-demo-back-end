@@ -9,13 +9,13 @@ var config = {
     // If you are on Microsoft Azure, you need this:  
     options: { encrypt: true, database: 'aaron-db-1' }
 };
-var connection = new Connection(config);
+
 var dataset = [];
 var tmpContext;
 
 module.exports = function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
-
+    var connection = new Connection(config);
     connection.on('connect', function (err) {
         console.log("Connected");
         tmpContext = context;
