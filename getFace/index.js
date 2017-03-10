@@ -11,33 +11,43 @@ var config = {
 };
 var connection = new Connection(config);
 var dataset = [];
+var tmpContext;
+
 module.exports = function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
     connection.on('connect', function (err) {
         console.log("Connected");
-        request = new Request("SELECT * FROM face_info", function (err) {
-            if (err) {
-                console.log(err);
-            }
-        });
-        var result = "";
-        request.on('row', function (columns) {
-            columns.forEach(function (column) {
-                dataset.push({
-                    col: column.metadata.colName,
-                    val: column.value
-                });
-            });
-        });
-        request.on('doneProc', function (rowCount, more, returnStatus, rows) {
-            context.res = {
-                status: 200,
-                body: JSON.stringify(dataset)
-            };
-            context.done();
-        });
-        connection.execSql(request);
+        tmpContext = context;
+        executeStatement();
     });
 
 };
+
+function executeStatement() {
+    request = new Request("SELECT * FROM face_info", function (err) {
+        connection.close();
+        if (err) {
+            console.log(err);
+            tmpContext.res = {
+                status: 400,
+                body: 'Error: ' + err
+            };
+        } else {
+            tmpContext.res = {
+                status: 200,
+                body: JSON.stringify(dataset)
+            };
+        }
+        tmpContext.done();
+    });
+    var result = "";
+    request.on('row', function (columns) {
+        var row = {};
+        columns.forEach(function (column) {
+            row[column.metadata.colName] = column.value;
+        });
+        dataset.push(row);
+    });
+    connection.execSql(request);
+}
