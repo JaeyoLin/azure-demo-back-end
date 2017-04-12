@@ -4,10 +4,10 @@ var TYPES = require('tedious').TYPES;
 
 var config = {
     userName: 'aaron',
-    password: 'q999999Q',
-    server: 'aaron-db-server.database.windows.net',
+    password: 'Apple9705',
+    server: 'azure-server-demo.database.windows.net',
     // If you are on Microsoft Azure, you need this:  
-    options: { encrypt: true, database: 'aaron-db-1' }
+    options: { encrypt: true, database: 'azure-db-demo' }
 };
 var connection;
 var dataset = [];
